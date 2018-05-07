@@ -1,17 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Key from '../Key/Key'
+import './KeyPad.css';
 
 const KeyPad = ({callOperator, numbers, operators, setOperator, updateDisplay}) => {
 
     const nums = numbers.map(number => {
       return (
-        <p key={number}>{number}</p>
+        <Key
+          key={number}
+          keyAction={updateDisplay}
+          keyType="number-key"
+          keyValue={number}
+        />
       );
     });
 
     const ops = operators.map(operator => {
       return (
-        <p key={operator}>{operator}</p>
+        <Key
+          key={operator}
+          keyAction={setOperator}
+          keyType="operator-key"
+          keyValue={operator}
+        />
       );
     });
 
@@ -22,6 +34,13 @@ const KeyPad = ({callOperator, numbers, operators, setOperator, updateDisplay}) 
         </div>
         <div className="operators-container">
           {ops}
+        </div>
+        <div className="submit-container">
+          <Key
+            keyAction={callOperator}
+            keyType="submit-key"
+            keyValue="="
+          />
         </div>
       </div>
     );
